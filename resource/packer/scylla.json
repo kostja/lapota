@@ -1,0 +1,26 @@
+{
+  "variables": {
+    "aws_access_key": "{{env `AWS_ACCESS_KEY_ID` }}",
+    "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY` }}",
+    "region": "eu-central-1"
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "eu-central-1",
+    "source_ami_filter": {
+      "filters": {
+        "virtualization-type": "hvm",
+        "name": "ScyllaDB 3.2.0",
+        "root-device-type": "ebs"
+      },
+      "owners": ["797456418907"],
+      "most_recent": true
+    },
+    "instance_type": "t2.micro",
+    "ssh_username": "centos",
+    "ami_name": "trawsers-scylla-{{timestamp}}"
+  }]
+}
+
