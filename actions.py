@@ -100,6 +100,7 @@ class BootInstances(Action):
             ec2 = boto3.resource("ec2")
             instances = ec2.create_instances(
                 ImageId=ami_by_name("trawsers-scylla"),
+                KeyName="kostja",
                 MinCount=3,
                 MaxCount=3,
                 InstanceType="i3.8xlarge",
